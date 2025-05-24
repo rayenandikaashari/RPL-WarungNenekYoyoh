@@ -1,105 +1,118 @@
-// Function to load cart items from localStorage
-function loadCartItems() {
-    const cartJson = localStorage.getItem('cart');
-    
-    if (cartJson) {
-        const cart = JSON.parse(cartJson);
-        const cartItemsContainer = document.getElementById('cart-items');
-        cartItemsContainer.innerHTML = '';
-        
-        // Update cart items count
-        document.querySelector('h1').textContent = `${cart.length} Items In Cart`;
-        
-        // If cart is empty
-        if (cart.length === 0) {
-            cartItemsContainer.innerHTML = '<p>Keranjang Anda kosong. <a href="katalog.php">Kembali belanja</a></p>';
-            document.querySelector('.cart-total').style.display = 'none';
-            document.querySelector('.checkout-button').style.display = 'none';
-            return;
-        }
-        
-        // Display cart items
-        let totalPrice = 0;
-        
-        cart.forEach((item, index) => {
-            const itemTotal = item.price * item.quantity;
-            totalPrice += itemTotal;
-            
-            const cartItemElement = document.createElement('div');
-            cartItemElement.className = 'cart-item';
-            cartItemElement.innerHTML = `
-                <div class="cart-item-image">
-                    <img src="${item.image}" alt="${item.name}">
-                </div>
-                <div class="cart-item-info">
-                    <div class="cart-item-name">${item.name}</div>
-                    <div class="cart-item-price">Rp${item.price.toLocaleString()}</div>
-                    <div class="quantity-control">
-                        <button class="quantity-button" onclick="decreaseQuantity(${index})">-</button>
-                        <span class="quantity">${item.quantity}</span>
-                        <button class="quantity-button" onclick="increaseQuantity(${index})">+</button>
-                    </div>
-                </div>
-                <button class="remove-button" onclick="removeItem(${index})">×</button>
-            `;
-            cartItemsContainer.appendChild(cartItemElement);
+// asset/js/cart.js
+
+// Fungsi untuk format Rupiah
+function formatRupiahJS(number) {
+    return 'Rp' + new Intl.NumberFormat('id-ID').format(number);
+}
+
+// Fungsi untuk mengirim update ke server
+async function updateCartQuantity(keranjangId, action) {
+    try {
+        const response = await fetch('update_jumlah.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({ 
+                keranjang_id: keranjangId, 
+                action: action 
+            })
         });
 
-        // Update total price
-        document.querySelector('.total-price').textContent = `Rp. ${totalPrice.toLocaleString()}`;
-    } else {
-        // Empty cart message
-        document.querySelector('h1').textContent = '0 Items In Cart';
-        document.getElementById('cart-items').innerHTML = '<p>Keranjang Anda kosong. <a href="katalog.php">Kembali belanja</a></p>';
-        document.querySelector('.cart-total').style.display = 'none';
-        document.querySelector('.checkout-button').style.display = 'none';
-    }
-}
-
-// Function to increase item quantity
-function increaseQuantity(index) {
-    const cartJson = localStorage.getItem('cart');
-    
-    if (cartJson) {
-        const cart = JSON.parse(cartJson);
-        cart[index].quantity += 1;
-        localStorage.setItem('cart', JSON.stringify(cart));
-        loadCartItems();
-    }
-}
-
-// Function to decrease item quantity
-function decreaseQuantity(index) {
-    const cartJson = localStorage.getItem('cart');
-    
-    if (cartJson) {
-        const cart = JSON.parse(cartJson);
-        
-        if (cart[index].quantity > 1) {
-            cart[index].quantity -= 1;
-        } else {
-            removeItem(index);
-            return;
+        if (!response.ok) {
+            throw new Error('Network response was not ok: ' + response.statusText);
         }
-        
-        localStorage.setItem('cart', JSON.stringify(cart));
-        loadCartItems();
+
+        const result = await response.json();
+
+        if (result.success) {
+            updateCartView(result); // Update tampilan jika sukses
+        } else {
+            alert('Gagal memperbarui keranjang: ' + result.message);
+        }
+
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Terjadi kesalahan jaringan.');
     }
 }
 
-// Function to remove item from cart
-function removeItem(index) {
-    const cartJson = localStorage.getItem('cart');
+// Fungsi untuk update tampilan di halaman
+function updateCartView(data) {
+    const qtySpan = document.getElementById(`qty-${data.keranjangId}`);
+    const itemDiv = document.getElementById(`item-${data.keranjangId}`);
+    const totalSpan = document.getElementById('cart-total-price');
+    const h1Title = document.querySelector('.page h1'); 
     
-    if (cartJson) {
-        const cart = JSON.parse(cartJson);
-        cart.splice(index, 1);
-        localStorage.setItem('cart', JSON.stringify(cart));
-        loadCartItems();
+    // Ambil elemen yang mau disembunyikan/ditampilkan
+    const cartTotalDiv = document.getElementById('cart-total-div');
+    const checkoutBtn = document.getElementById('checkout-button-id');
+
+    if (data.deleted) {
+        if (itemDiv) itemDiv.remove(); // Hapus item dari tampilan
+    } else {
+        if (qtySpan) qtySpan.textContent = data.newJumlah; // Update jumlah
+    }
+
+    if (totalSpan) {
+        totalSpan.textContent = formatRupiahJS(data.newTotal); // Update total
+    }
+    
+    const cartItemsContainer = document.getElementById('cart-items'); 
+    const currentItemCount = cartItemsContainer.querySelectorAll('.cart-item').length;
+
+    // Update H1 Title
+    if (h1Title) {
+        h1Title.textContent = `${currentItemCount} Items In Cart`;
+    }
+
+    // Cek jika keranjang jadi kosong
+    if (currentItemCount === 0) {
+        // Tampilkan pesan keranjang kosong
+        cartItemsContainer.innerHTML = `
+            <div class="empty-cart" id="empty-cart-message">
+                <p>Keranjang belanja Anda masih kosong.</p>
+                <a href="katalog.php">Kembali Belanja</a>
+            </div>`;
+        // Sembunyikan Total dan Checkout
+        if(cartTotalDiv) cartTotalDiv.style.display = 'none'; 
+        if(checkoutBtn) checkoutBtn.style.display = 'none'; 
+
+    } else {
+        // Tampilkan Total dan Checkout
+        if(cartTotalDiv) cartTotalDiv.style.display = 'flex'; // Atau 'block', sesuaikan CSS
+        if(checkoutBtn) checkoutBtn.style.display = 'block'; 
     }
 }
 
-// Initialize the page
+// Tambahkan event listener saat halaman dimuat
 document.addEventListener('DOMContentLoaded', function() {
-    loadCartItems();
+    const cartContainer = document.getElementById('cart-items-container'); 
+
+    if (cartContainer) {
+        cartContainer.addEventListener('click', function(event) {
+            const target = event.target;
+            const button = target.closest('.quantity-button, .remove-item'); 
+
+            if (!button) return; // Keluar jika bukan tombol + / - / X
+
+            const keranjangId = button.getAttribute('data-id');
+
+            if (!keranjangId) return; 
+
+            if (button.classList.contains('increase-qty')) {
+                updateCartQuantity(keranjangId, 'increase');
+            } 
+            else if (button.classList.contains('decrease-qty')) {
+                updateCartQuantity(keranjangId, 'decrease');
+            } 
+            else if (button.classList.contains('remove-item')) {
+                event.preventDefault(); 
+                if (confirm('Yakin ingin menghapus item ini?')) {
+                    updateCartQuantity(keranjangId, 'remove');
+                }
+            }
+        });
+    } 
 });

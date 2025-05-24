@@ -1,4 +1,5 @@
 <?php
+session_start(); // <-- TAMBAHKAN INI DI PALING ATAS
 include 'koneksi.php';
 
 $sql = "SELECT p.id, p.nama, p.harga, p.gambar_produk, k.nama_kategori AS kategori

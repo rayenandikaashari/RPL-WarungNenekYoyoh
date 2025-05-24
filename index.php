@@ -1,3 +1,6 @@
+<?php
+session_start(); // <-- TAMBAHKAN INI DI PALING ATAS
+include 'koneksi.php';?>
 <!DOCTYPE html>
 <html lang="id">
 <head>

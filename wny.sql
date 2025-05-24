@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 23, 2025 at 05:27 PM
+-- Generation Time: May 24, 2025 at 07:30 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -66,8 +66,9 @@ INSERT INTO `kategori` (`id`, `nama_kategori`) VALUES
 
 CREATE TABLE `keranjang` (
   `id` int NOT NULL,
-  `produk_id` int DEFAULT NULL,
-  `jumlah` int DEFAULT NULL
+  `session_id` varchar(255) NOT NULL COMMENT 'Untuk menyimpan ID Sesi PHP',
+  `produk_id` int NOT NULL,
+  `jumlah` int DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
@@ -139,7 +140,8 @@ ALTER TABLE `kategori`
 --
 ALTER TABLE `keranjang`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `produk_id` (`produk_id`);
+  ADD KEY `produk_id` (`produk_id`),
+  ADD KEY `idx_session_id` (`session_id`);
 
 --
 -- Indexes for table `pembelian`
@@ -174,7 +176,7 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT for table `keranjang`
 --
 ALTER TABLE `keranjang`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `pembelian`
