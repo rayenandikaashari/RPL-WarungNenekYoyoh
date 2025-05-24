@@ -1,588 +1,600 @@
 .welcome-image img {
-    width: 110%;
-    max-width: 300px;
-    height: auto; 
-    border-radius: 110px; 
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-    margin: 20px auto;
-    display: block;
+  width: 110%;
+  max-width: 300px;
+  height: auto;
+  border-radius: 110px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  display: block;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
 }
 
 body {
-    background-color: #f5f5f5;
+  background-color: #f5f5f5;
 }
 
 .container {
-    max-width: 480px;
-    margin: 0 auto;
-    background-color: white;
-    min-height: 100vh;
-    position: relative;
+  max-width: 480px;
+  margin: 0 auto;
+  background-color: white;
+  min-height: 100vh;
+  position: relative;
 }
 
 .page {
-    display: block;
-    padding: 15px;
-    padding-bottom: 80px;
-    min-height: 100vh;
+  display: block;
+  padding: 15px;
+  padding-bottom: 80px; /* Beri ruang untuk nav/footer fixed */
+  min-height: 100vh;
 }
 
 /* Welcome Page */
 .welcome-page {
-    background-color: #5e35b1;
-    color: white;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  background-color: #5e35b1;
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 .welcome-image {
-    width: 200px;
-    height: 200px;
-    background-color: white;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
+  width: 200px;
+  height: 200px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .welcome-button {
-    background-color: white;
-    color: #5e35b1;
-    border: none;
-    padding: 12px 30px;
-    border-radius: 30px;
-    font-weight: bold;
-    margin-top: 20px;
-    cursor: pointer;
+  background-color: white;
+  color: #5e35b1;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 30px;
+  font-weight: bold;
+  margin-top: 20px;
+  cursor: pointer;
 }
 
 /* Menu Page */
 .search-bar {
-    background-color: #f0f0f0;
-    padding: 10px 15px;
-    border-radius: 30px;
-    display: flex;
-    align-items: center;
-    margin-bottom: 25px;
-    margin-top: 15px;
+  background-color: #f0f0f0;
+  padding: 10px 15px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+  margin-top: 15px;
 }
 
 .search-bar input {
-    border: none;
-    background: transparent;
-    width: 100%;
-    padding: 5px 10px;
-    outline: none;
+  border: none;
+  background: transparent;
+  width: 100%;
+  padding: 5px 10px;
+  outline: none;
 }
 
 .category-list {
-    display: flex;
-    overflow-x: auto;
-    margin-bottom: 0px;
-    padding-bottom: 5px;
+  display: flex;
+  overflow-x: auto;
+  margin-bottom: 0px;
+  padding-bottom: 5px;
 }
 
 .category-item {
-    min-width: 60px; /* Sesuaikan lebar minimum agar konsisten */
-    text-align: center;
-    margin-right: 10px;
-    display: flex;
-    flex-direction: column; /* Atur ikon dan teks dalam satu kolom */
-    align-items: center; /* Pusatkan konten */
-    justify-content: center; /* Pusatkan secara vertikal */
+  min-width: 60px;
+  text-align: center;
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .category-icon {
-    width: 50px;
-    height: 50px;
-    background-color: #f0e6ff;
-    border-radius: 10px;
-    margin-bottom: 11px; /* Jarak antara ikon dan teks */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 50px;
+  height: 50px;
+  background-color: #f0e6ff;
+  border-radius: 10px;
+  margin-bottom: 11px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-
 .category-item.active .category-icon {
-    background-color: #5e35b1; /* Warna ungu */
-    color: white; /* Warna teks putih */
+  background-color: #5e35b1;
+  color: white;
 }
 
 .promotion-banner {
-    background-color: #a991e5;
-    border-radius: 10px;
-    padding: 15px;
-    color: white;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
+  background-color: #a991e5;
+  border-radius: 10px;
+  padding: 15px;
+  color: white;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
 }
 
 .promotion-info {
-    flex: 1;
+  flex: 1;
 }
 
 .promotion-image {
-    width: 80px;
-    height: 80px;
-    background-color: #f5f5f5;
-    border-radius: 5px;
+  width: 80px;
+  height: 80px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
 }
 
 h2 {
-    margin-top: 10px; /* Kurangi jarak dari elemen di atasnya */
-    margin-bottom: 18px; /* Sesuaikan jarak dengan elemen di bawahnya */
+  margin-top: 10px;
+  margin-bottom: 18px;
 }
 
 .product-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
 .product-card {
-    background-color: #f0e6ff;
-    border-radius: 10px;
-    padding: 15px;
-    position: relative;
+  background-color: #f0e6ff;
+  border-radius: 10px;
+  padding: 15px;
+  position: relative;
 }
 
 .product-image img {
-    width: 100%; /* Gambar akan menyesuaikan lebar elemen induknya */
-    height: 150px; /* Tetapkan tinggi yang konsisten */
-    object-fit: contain; /* Menjaga rasio aspek gambar */
-    display: block;
+  width: 100%;
+  height: 150px;
+  object-fit: contain;
+  display: block;
 }
 
 .product-name {
-    font-weight: bold;
-    margin-bottom: 5px;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
 .product-price {
-    color: #4CAF50;
-    font-weight: bold;
-}
-
-.product-detail-image img {
-    width: 100%; /* Gambar akan menyesuaikan lebar elemen induknya */
-    height: 220px; /* Tetapkan tinggi yang konsisten */
-    object-fit: contain; /* Menjaga rasio aspek gambar */
-    display: block;
-    border-radius: 10px; /* Opsional: Tambahkan sudut melengkung */
+  color: #4caf50;
+  font-weight: bold;
 }
 
 .add-button {
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
-    width: 30px;
-    height: 30px;
-    background-color: black;
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    cursor: pointer;
-    border: none;
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  width: 30px;
+  height: 30px;
+  background-color: black;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
 }
 
 /* Product Detail Page */
 .product-detail {
-    padding: 0;
+  padding: 0;
 }
 
 .product-detail-header {
-    background-color: #5e35b1; /* Warna ungu */
-    height: 50px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    width: calc(100% + 30px); /* Tambahkan lebar ke kiri dan kanan */
-    padding: 0 15px; /* Padding kiri dan kanan */
-    margin: 0 -15px 0 -15px; /* Geser ke kiri dan kanan dengan margin negatif */
-    box-sizing: border-box; /* Pastikan padding dihitung dalam lebar elemen */
+  background-color: #5e35b1;
+  height: 50px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: calc(100% + 30px);
+  padding: 0 15px;
+  margin: 0 -15px 0 -15px;
+  box-sizing: border-box;
 }
 
 .back-button {
-    color: white;
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
+  color: white;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  text-decoration: none; /* Tambahkan ini jika back-button adalah link */
 }
 
 .product-detail-image {
-    width: 100%;
-    height: 250px;
-    background-color: #f5f5f5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  height: 250px;
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px; /* Tambahkan jarak jika perlu */
+  margin-bottom: 15px; /* Tambahkan jarak jika perlu */
+}
+
+.product-detail-image img {
+  width: 100%;
+  height: 220px;
+  object-fit: contain;
+  display: block;
 }
 
 .product-detail-info {
-    padding: 20px;
+  padding: 20px;
 }
 
 .product-detail-name {
-    font-size: 24px;
-    margin-bottom: 10px;
+  font-size: 24px;
+  margin-bottom: 10px;
 }
 
 .product-detail-price {
-    color: #FF9800;
-    font-size: 18px;
-    margin-bottom: 15px;
+  color: #ff9800;
+  font-size: 18px;
+  margin-bottom: 15px;
 }
 
 .product-detail-description {
-    color: #999;
-    line-height: 1.5;
-    margin-bottom: 20px;
+  color: #999;
+  line-height: 1.5;
+  margin-bottom: 20px;
 }
 
-
 .add-to-cart-button {
-    background-color: #5e35b1;
-    color: white;
-    width: 100%;
-    border: none;
-    padding: 15px;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
+  background-color: #5e35b1;
+  color: white;
+  width: 100%;
+  border: none;
+  padding: 15px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 /* Cart Page */
 
 .page h1 {
-    margin-top: 5px; /* Tambahkan jarak dari atas */
-    margin-left: 10px; /* Geser sedikit ke kanan */
-    text-align: left; /* Pastikan teks tetap rata kiri */
-}
-
-.cart-item {
-    display: flex;
-    margin-bottom: 15px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #eee;
-}
-
-.cart-item-image img {
-    width: 80px; /* Sesuaikan dengan ukuran container */
-    height: 80px; /* Tetapkan tinggi yang konsisten */
-    object-fit: contain; /* Menjaga rasio aspek gambar */
-    border-radius: 5px; /* Opsional: Tambahkan sudut melengkung */
-    display: block;
-    margin-right: 10px; /* Tambahkan jarak antara gambar dan teks */
-}
-
-.cart-item-info {
-    flex: 1;
-    margin-left: 5px; /* Tambahkan jarak antara teks dan gambar */
+  margin-top: 5px;
+  margin-left: 10px;
+  text-align: left;
 }
 
 #cart-items-container {
-    max-height: 700px; /* Sesuaikan tinggi maksimum */
-    overflow-y: auto;
-    border: 1px solid #ddd; /* Opsional: Tambahkan border untuk estetika */
-    margin-bottom: 80px; /* Opsional: Tambahkan jarak dengan elemen lain */
-    padding: 10px; /* Opsional: Tambahkan padding */
+  max-height: 50vh; /* <-- Ubah ke vh agar lebih responsif, 50% tinggi layar */
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  margin-bottom: 10px; /* Kurangi margin bawah karena footer fixed */
+  padding: 10px;
+  min-height: 100px; /* Beri tinggi minimum agar tidak aneh saat kosong */
+}
+
+.cart-item {
+  display: flex;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+  align-items: center; /* Sejajarkan vertikal */
+}
+
+.cart-item:last-child {
+  border-bottom: none; /* Hilangkan border untuk item terakhir */
+  margin-bottom: 0;
+}
+
+.cart-item-image img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 5px;
+  display: block;
+  margin-right: 15px; /* <-- Tambah jarak */
+}
+
+.cart-item-info {
+  flex: 1;
+  margin-left: 5px;
 }
 
 .cart-item-name {
-    font-weight: bold;
-    margin-bottom: 5px;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
 .cart-item-price {
-    color: #FF9800;
-    margin-bottom: 10px;
+  color: #ff9800;
+  margin-bottom: 10px;
 }
 
 .cart-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: white;
-    padding: 15px;
-    padding-bottom: 50px; /* Tambahkan padding bawah */
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-    max-width: 480px;
-    margin: 0 auto;
-    text-align: center;
-    z-index: 1000; /* Pastikan elemen berada di atas */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  padding: 15px;
+  padding-bottom: 10px; /* <-- Kurangi padding bawah, nav-bar akan memberi jarak */
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  max-width: 480px;
+  margin: 0 auto;
+  text-align: center;
+  z-index: 1000;
 }
 
 .cart-footer .cart-total {
-    display: flex;
-    justify-content: space-between;
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px; /* Kurangi margin */
 }
 
 .cart-footer .checkout-button {
-    background-color: #5e35b1;
-    color: white;
-    width: 100%;
-    border: none;
-    padding: 15px;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 20px;
-    margin-bottom: 25px;
+  background-color: #5e35b1;
+  color: white;
+  width: 100%;
+  border: none;
+  padding: 15px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px; /* Kurangi margin */
+  margin-bottom: 10px; /* Kurangi margin */
+  text-decoration: none; /* Pastikan link tidak bergaris bawah */
 }
 
 .cart-footer .back-to-menu {
-    text-align: center;
-    color: #5e35b1;
-    font-weight: bold;
-    cursor: pointer;
-    text-decoration: none;
-    margin-bottom: 75px; /* Jarak dari bawah */
+  text-align: center;
+  color: #5e35b1;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  margin-bottom: 10px; /* Kurangi margin, nav-bar akan memberi jarak */
+  display: block; /* Pastikan ia block */
 }
 
 .quantity-control {
-    display: flex;
-    align-items: center;
+  display: inline-flex; /* <-- Ubah ke inline-flex agar bisa diatur */
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
 .quantity-button {
-    width: 25px;
-    height: 25px;
-    background-color: #eee;
-    border: none;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
+  width: 30px;
+  height: 30px;
+  background-color: #eee;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 30px;
+  color: #333;
 }
 
-.quantity {
-    margin: 0 10px;
+.quantity-button:hover {
+  background-color: #ddd;
+}
+
+.quantity-input {
+  border: none;
+  background: transparent;
+  text-align: center;
+  font-size: 16px;
+  width: 40px;
+  outline: none;
+  padding: 5px 0;
+  height: 30px;
+  border-left: 1px solid #ccc; /* Tambah border pemisah */
+  border-right: 1px solid #ccc; /* Tambah border pemisah */
+}
+
+.quantity-input::-webkit-outer-spin-button,
+.quantity-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.quantity-input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 .remove-button {
-    color: rgb(0, 0, 0);
-    border: none;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    font-size: 14px;
-    font-weight: bold; /* Membuat "x" lebih tebal */
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 3px; /* Jarak dari atas */
-    margin-left: auto;
-    margin-right: 15px; /* Geser sedikit ke kiri */
+  background: none; /* Hapus background */
+  color: rgb(200, 0, 0); /* <-- Ubah warna jadi merah */
+  border: none;
+  border-radius: 0; /* Hapus radius jika ingin link teks */
+  width: auto; /* Biarkan otomatis */
+  height: auto; /* Biarkan otomatis */
+  font-size: 24px; /* <-- Perbesar X */
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: 5px; /* Kurangi margin */
+  padding: 5px; /* Tambah padding agar area klik lebih besar */
+}
+.remove-button:hover {
+  color: rgb(150, 0, 0); /* Warna lebih gelap saat hover */
 }
 
-.order-instructions {
-    width: 100%;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 15px;
-    margin: 20px 0;
-    min-height: 100px;
-    resize: none;
-}
-
-.cart-total {
-    display: flex;
-    justify-content: space-between;
-    font-size: 18px;
-    font-weight: bold;
-    margin: 20px 0;
-}
-
-.checkout-button {
-    background-color: #5e35b1;
-    color: white;
-    width: 100%;
-    border: none;
-    padding: 15px;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-bottom: 15px;
-}
-
-.back-to-menu {
-    text-align: center;
-    color: #5e35b1;
-    font-weight: bold;
-    cursor: pointer;
-    margin-bottom: 50px;
-}
-
-/* QR Page */
-.qr-page {
-    text-align: center;
-}
-
-.qr-title {
-    color: #5e35b1;
-    margin: 20px 0;
-}
-
-.qr-container {
-    border: 2px dashed #ccc;
-    padding: 20px;
-    margin: 20px 0;
-    min-height: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.qr-image {
-    width: 200px;
-    height: 200px;
-}
-
-.download-button {
-    background-color: #5e35b1;
-    color: white;
-    width: 100%;
-    border: none;
-    padding: 15px;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-bottom: 50px;
-}
-
-/* Thank You Page */
+/* QR Page & Thank You Page (Tidak berubah) */
+.qr-page,
 .thank-you-page {
-    background-color: #5e35b1;
-    color: white;
-    text-align: center;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  text-align: center;
 }
-
-.star-icon {
-    width: 150px;
-    height: 150px;
-    background-color: white;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
+.qr-title {
+  color: #5e35b1;
+  margin: 20px 0;
 }
-
+.qr-container {
+  border: 2px dashed #ccc;
+  padding: 20px;
+  margin: 20px 0;
+  min-height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.qr-image {
+  width: 200px;
+  height: 200px;
+}
+.download-button,
 .shop-again-button {
-    background-color: white;
-    color: #5e35b1;
-    border: none;
-    padding: 12px 30px;
-    border-radius: 30px;
-    font-weight: bold;
-    margin-top: 20px;
-    cursor: pointer;
+  background-color: #5e35b1;
+  color: white;
+  width: 100%;
+  border: none;
+  padding: 15px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.download-button {
+  margin-bottom: 50px;
+}
+.thank-you-page {
+  background-color: #5e35b1;
+  color: white;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.star-icon {
+  width: 150px;
+  height: 150px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.shop-again-button {
+  background-color: white;
+  color: #5e35b1;
+  padding: 12px 30px;
+  border-radius: 30px;
+  margin-top: 20px;
 }
 
 /* Navigation */
 .nav-bar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: white;
-    display: flex;
-    justify-content: space-around;
-    padding: 10px 0;
-    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
-    max-width: 480px;
-    margin: 0 auto;
+  /* position: fixed; <-- Hapus/komen jika ingin nav-bar di dalam footer */
+  /* bottom: 0; */
+  /* left: 0; */
+  /* right: 0; */
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0 5px 0; /* Sesuaikan padding */
+  /* box-shadow: 0 -2px 5px rgba(0,0,0,0.1); <-- Hapus jika di dalam footer */
+  max-width: 480px;
+  margin: 0 auto;
+  border-top: 1px solid #eee; /* Beri garis atas jika tidak fixed */
+  margin-top: 15px; /* Beri jarak dari back-to-menu */
 }
 
 .nav-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #999;
+  font-size: 12px; /* <-- Kecilkan font nav */
 }
 
-/* Navigation link styling */
 .nav-item a {
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .nav-item.active {
-    color: #5e35b1;
+  color: #5e35b1;
 }
 
 .nav-icon {
-    font-size: 24px;
-    margin-bottom: 5px;
+  font-size: 20px; /* <-- Kecilkan ikon nav */
+  margin-bottom: 3px; /* <-- Kurangi jarak ikon & teks */
 }
 
-a.welcome-button, a.checkout-button, a.download-button, a.shop-again-button {
-    display: inline-block;
-    text-decoration: none;
-    text-align: center;
-    cursor: pointer;
-}
-
-.back-to-menu {
-    text-decoration: none;
-    color: #5e35b1;
-    font-weight: bold;
-    cursor: pointer;
-    margin-bottom: 30px;
-    padding: 10px 0;
-    display: block;
+/* General Link Styling */
+a.welcome-button,
+a.checkout-button,
+a.download-button,
+a.shop-again-button {
+  display: inline-block;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
 }
 
 .cash-button {
-    background-color: white; /* Warna latar putih */
-    color: #5e35b1; /* Teks berwarna ungu */
-    width: 100%; /* Lebar penuh */
-    border: 2px solid #5e35b1; /* Outline berwarna ungu */
-    padding: 15px; /* Padding untuk ukuran tombol */
-    border-radius: 5px; /* Sudut melengkung */
-    font-weight: bold; /* Teks tebal */
-    cursor: pointer; /* Pointer saat hover */
-    margin-top: 20px; /* Jarak atas */
-    margin-bottom: 25px; /* Jarak bawah */
-    text-align: left; /* Teks rata tengah */
-    font-size: 16px; /* Ukuran font */
-    display: inline-block; /* Membuat tombol terlihat seperti blok */
+  background-color: white;
+  color: #5e35b1;
+  width: 100%;
+  border: 2px solid #5e35b1;
+  padding: 15px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-bottom: 25px;
+  text-align: left;
+  font-size: 16px;
+  display: inline-block;
 }
 
 .cash-button:hover {
-    background-color: #5e35b1; /* Warna ungu saat hover */
-    color: white; /* Teks berubah menjadi putih saat hover */
+  background-color: #5e35b1;
+  color: white;
+}
+
+/* Untuk mengatasi tumpang tindih footer dan navbar */
+.cart-footer {
+  padding-bottom: 10px; /* Kurangi padding bawah footer */
+}
+/* Pastikan body punya cukup padding bawah jika footer tidak fixed */
+body .container .page {
+  padding-bottom: 180px; /* Sesuaikan angka ini agar konten tidak tertutup footer */
+}
+
+.empty-cart {
+  text-align: center;
+  padding: 50px 20px;
+  font-size: 1.1em;
+  color: #777;
+}
+.empty-cart a {
+  color: #5e35b1;
+  text-decoration: none;
+  font-weight: bold;
 }

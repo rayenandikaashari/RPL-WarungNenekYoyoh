@@ -36,13 +36,16 @@ if (isset($input['keranjang_id']) && isset($input['action'])) {
             $newJumlah = $currentJumlah + 1;
         } elseif ($action === 'decrease') {
             $newJumlah = $currentJumlah - 1;
-            if ($newJumlah <= 0) {
-                $shouldDelete = true;
-            }
+        } elseif ($action === 'set' && isset($input['jumlah'])) {
+            $newJumlah = (int)$input['jumlah'];
         } elseif ($action === 'remove') {
              $shouldDelete = true;
         }
 
+        if ($newJumlah <= 0 && !$shouldDelete) {
+            $shouldDelete = true; 
+        }
+        
         if ($shouldDelete) {
             $sqlAction = "DELETE FROM keranjang WHERE id = ? AND session_id = ?";
             $stmtAction = $conn->prepare($sqlAction);
@@ -71,7 +74,6 @@ if (isset($input['keranjang_id']) && isset($input['action'])) {
                 'success' => true,
                 'message' => 'Keranjang diperbarui.',
                 'newJumlah' => $newJumlah,
-                'newSubtotal' => $newJumlah * $hargaProduk, // Tetap kirim, meski JS tak pakai
                 'newTotal' => $newTotal,
                 'deleted' => $shouldDelete,
                 'keranjangId' => $keranjangId
@@ -83,9 +85,8 @@ if (isset($input['keranjang_id']) && isset($input['action'])) {
 
     } else {
          $response['message'] = 'Item tidak ditemukan atau bukan milik Anda.';
-         if(isset($stmtGet)) $stmtGet->close(); // Pastikan ditutup
+         if(isset($stmtGet)) $stmtGet->close();
     }
-
 }
 
 $conn->close();

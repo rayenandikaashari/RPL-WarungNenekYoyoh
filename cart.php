@@ -25,13 +25,12 @@ if ($stmt) {
     $result = $stmt->get_result();
 
     while ($row = $result->fetch_assoc()) {
-        $row['subtotal'] = $row['harga'] * $row['jumlah']; // Tetap hitung untuk total
+        $row['subtotal'] = $row['harga'] * $row['jumlah'];
         $cartItems[] = $row;
         $totalPrice += $row['subtotal'];
     }
     $stmt->close();
 } else {
-    // Sebaiknya log error ini daripada menampilkannya langsung
     error_log("Gagal menyiapkan query: " . $conn->error);
     echo "Terjadi kesalahan saat memuat keranjang.";
 }
@@ -65,17 +64,22 @@ $conn->close();
                                     <div class="cart-item-price"><?php echo formatRupiah($item['harga']); ?></div>
                                     <div class="quantity-control">
                                         <button class="quantity-button decrease-qty" data-id="<?php echo $item['keranjang_id']; ?>">-</button>
-                                        <span class="quantity" id="qty-<?php echo $item['keranjang_id']; ?>"><?php echo $item['jumlah']; ?></span>
+                                        <input type="number" 
+                                               class="quantity-input" 
+                                               id="qty-<?php echo $item['keranjang_id']; ?>" 
+                                               value="<?php echo $item['jumlah']; ?>" 
+                                               min="1" 
+                                               data-id="<?php echo $item['keranjang_id']; ?>">
                                         <button class="quantity-button increase-qty" data-id="<?php echo $item['keranjang_id']; ?>">+</button>
                                     </div>
-                                    </div>
+                                </div>
                                 <button class="remove-button remove-item" data-id="<?php echo $item['keranjang_id']; ?>">×</button>
                             </div>
                         <?php endforeach; ?>
                     <?php else: ?>
-                        <div class="empty-cart" id="empty-cart-message">
+                         <div class="empty-cart" id="empty-cart-message">
                             <p>Keranjang belanja Anda masih kosong.</p>
-                            <a href="katalog.php">Kembali Belanja</a>
+                            <a href="katalog.php">Mulai Belanja</a>
                         </div>
                     <?php endif; ?>
                 </div>
@@ -87,7 +91,6 @@ $conn->close();
                     <span class="total-price" id="cart-total-price"><?php echo formatRupiah($totalPrice); ?></span>
                 </div>
                 <a href="payment.php" class="checkout-button" id="checkout-button-id" style="<?php echo empty($cartItems) ? 'display: none;' : 'display: block;'; ?>">Checkout</a>
-                
                 <a href="katalog.php" class="back-to-menu">Back to Menu</a>
 
                 <div class="nav-bar">
@@ -110,7 +113,8 @@ $conn->close();
                         </a>
                     </div>
                 </div>
-            </div> </div>
+            </div> 
+        </div>
     </div>
     <script src="asset/js/cart.js"></script> 
 </body>
