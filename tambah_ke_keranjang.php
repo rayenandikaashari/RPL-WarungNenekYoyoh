@@ -1,11 +1,8 @@
 <?php
-// tambah_ke_keranjang.php
-
-// WAJIB: Mulai session di paling atas!
 session_start(); 
 
 header('Content-Type: application/json');
-include 'koneksi.php'; // Sertakan koneksi database
+include 'koneksi.php'; 
 
 // Dapatkan ID Sesi saat ini
 $sessionId = session_id();
@@ -20,7 +17,7 @@ if (!isset($_POST['produk_id']) || !filter_var($_POST['produk_id'], FILTER_VALID
 $produkId = (int)$_POST['produk_id'];
 $jumlahTambah = 1; // Selalu tambah 1 saat ini
 
-// --- Cek apakah produk sudah ada di keranjang untuk sesi ini ---
+//cek apakah produk sudah ada di keranjang untuk sesi ini
 $sqlCheck = "SELECT id, jumlah FROM keranjang WHERE session_id = ? AND produk_id = ?";
 $stmtCheck = $conn->prepare($sqlCheck);
 $stmtCheck->bind_param("si", $sessionId, $produkId);
@@ -28,7 +25,7 @@ $stmtCheck->execute();
 $resultCheck = $stmtCheck->get_result();
 
 if ($resultCheck->num_rows > 0) {
-    // --- Jika SUDAH ADA: Update jumlah ---
+    // Jika SUDAH ADA: Update jumlah
     $row = $resultCheck->fetch_assoc();
     $keranjangId = $row['id'];
     $jumlahBaru = $row['jumlah'] + $jumlahTambah;
@@ -46,7 +43,7 @@ if ($resultCheck->num_rows > 0) {
     $stmtUpdate->close();
 
 } else {
-    // --- Jika BELUM ADA: Insert baru ---
+    // Jika BELUM ADA: Insert baru
     $sqlInsert = "INSERT INTO keranjang (session_id, produk_id, jumlah) VALUES (?, ?, ?)";
     $stmtInsert = $conn->prepare($sqlInsert);
     $stmtInsert->bind_param("sii", $sessionId, $produkId, $jumlahTambah);

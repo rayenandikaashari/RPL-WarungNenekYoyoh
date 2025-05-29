@@ -30,7 +30,7 @@ body {
 .page {
   display: block;
   padding: 15px;
-  padding-bottom: 80px; /* Beri ruang untuk nav/footer fixed */
+  padding-bottom: 190px; /* Beri ruang untuk nav/footer fixed */
   min-height: 100vh;
 }
 
@@ -506,19 +506,19 @@ h2 {
 
 /* Navigation */
 .nav-bar {
-  /* position: fixed; <-- Hapus/komen jika ingin nav-bar di dalam footer */
-  /* bottom: 0; */
-  /* left: 0; */
-  /* right: 0; */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
   background-color: white;
   display: flex;
   justify-content: space-around;
-  padding: 10px 0 5px 0; /* Sesuaikan padding */
-  /* box-shadow: 0 -2px 5px rgba(0,0,0,0.1); <-- Hapus jika di dalam footer */
+  padding: 10px 0 5px 0;
   max-width: 480px;
   margin: 0 auto;
   border-top: 1px solid #eee; /* Beri garis atas jika tidak fixed */
   margin-top: 15px; /* Beri jarak dari back-to-menu */
+  z-index: 1000; /* Pastikan di atas konten lain */
 }
 
 .nav-item {
@@ -578,13 +578,13 @@ a.shop-again-button {
   color: white;
 }
 
-/* Untuk mengatasi tumpang tindih footer dan navbar */
 .cart-footer {
-  padding-bottom: 10px; /* Kurangi padding bawah footer */
-}
-/* Pastikan body punya cukup padding bawah jika footer tidak fixed */
-body .container .page {
-  padding-bottom: 180px; /* Sesuaikan angka ini agar konten tidak tertutup footer */
+    position: fixed; 
+    bottom: 50px;    /* <-- SESUAIKAN angka 50px ini dengan TINGGI AKTUAL .nav-bar Anda */
+    left: 0;
+    right: 0;
+    /* ... (style lainnya seperti background, max-width, margin, padding, shadow) ... */
+    z-index: 999; /* Di bawah nav-bar */
 }
 
 .empty-cart {

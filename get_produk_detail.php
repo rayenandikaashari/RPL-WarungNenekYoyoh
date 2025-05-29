@@ -1,8 +1,7 @@
 <?php
-// get_produk_detail.php
 
-header('Content-Type: application/json'); // Beri tahu browser bahwa outputnya JSON
-include 'koneksi.php'; // Sertakan file koneksi (pastikan path benar)
+header('Content-Type: application/json'); 
+include 'koneksi.php'; 
 
 // Periksa apakah ID produk ada di URL dan merupakan angka
 if (!isset($_GET['id']) || !filter_var($_GET['id'], FILTER_VALIDATE_INT)) {
@@ -13,7 +12,6 @@ if (!isset($_GET['id']) || !filter_var($_GET['id'], FILTER_VALIDATE_INT)) {
 
 $productId = (int)$_GET['id'];
 
-// Siapkan query SQL menggunakan prepared statement untuk keamanan
 // Ambil kolom yang diperlukan (id, nama, harga, deskripsi, gambar_produk)
 $sql = "SELECT id, nama, harga, deskripsi, gambar_produk FROM produk WHERE id = ?";
 $stmt = $conn->prepare($sql);

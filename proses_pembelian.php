@@ -6,7 +6,7 @@ $sessionId = session_id();
 $totalPrice = isset($_POST['total_price']) ? (int)$_POST['total_price'] : 0;
 $paymentMethod = $_POST['payment_method'] ?? 'unknown'; // Kita tetap simpan metodenya, mungkin berguna nanti
 
-// 1. Ambil semua item dari keranjang
+//  Ambil semua item dari keranjang
 $sqlGetCart = "SELECT produk_id, jumlah, harga 
                FROM keranjang k
                JOIN produk p ON k.produk_id = p.id
@@ -35,11 +35,11 @@ if (empty($cartItems)) {
     exit;
 }
 
-// 2. Mulai Transaksi
+//  Mulai Transaksi
 $conn->begin_transaction();
 
 try {
-    // 3. Masukkan ke 'pembelian'
+    //  Masukkan ke 'pembelian'
     $sqlInsertPembelian = "INSERT INTO pembelian (total) VALUES (?)";
     $stmtPembelian = $conn->prepare($sqlInsertPembelian);
     if($stmtPembelian === false) throw new Exception("Prepare Gagal (Pembelian): " . $conn->error);
@@ -50,7 +50,7 @@ try {
     if ($pembelianId <= 0) throw new Exception("Gagal mendapatkan ID pembelian.");
     $stmtPembelian->close();
 
-    // 4. Masukkan ke 'detail_pembelian'
+    //  Masukkan ke 'detail_pembelian'
     $sqlInsertDetail = "INSERT INTO detail_pembelian (pembelian_id, produk_id, jumlah, harga) VALUES (?, ?, ?, ?)";
     $stmtDetail = $conn->prepare($sqlInsertDetail);
     if($stmtDetail === false) throw new Exception("Prepare Gagal (Detail): " . $conn->error);
@@ -61,7 +61,7 @@ try {
     }
     $stmtDetail->close();
 
-    // 5. Hapus dari 'keranjang'
+    //  Hapus dari 'keranjang'
     $sqlDeleteKeranjang = "DELETE FROM keranjang WHERE session_id = ?";
     $stmtDelete = $conn->prepare($sqlDeleteKeranjang);
     if($stmtDelete === false) throw new Exception("Prepare Gagal (Delete): " . $conn->error);
@@ -69,13 +69,13 @@ try {
     if(!$stmtDelete->execute()) throw new Exception("Execute Gagal (Delete): " . $stmtDelete->error);
     $stmtDelete->close();
 
-    // 6. Commit
+    //  Commit
     $conn->commit();
 
-    // 7. Tutup koneksi SEBELUM redirect
+    //  Tutup koneksi SEBELUM redirect
     $conn->close(); 
     
-    // 8. SELALU Arahkan ke halaman terima kasih
+    // SELALU Arahkan ke halaman terima kasih
     header("Location: thankyou.php");
     exit; // Hentikan skrip setelah redirect
 
