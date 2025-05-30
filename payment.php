@@ -57,7 +57,7 @@ $conn->close();
             <form action="placeorder.php" method="POST" style="margin-bottom: 15px;">
                 <input type="hidden" name="total_price" value="<?php echo $totalPrice; ?>">
                 <input type="hidden" name="payment_method" value="midtrans">
-                <button type="submit" class="cash-button">💳 Bayar Online (Midtrans)</button>
+                <button type="submit" class="cash-button">💳 Bayar Online</button>
             </form>
 
                 <form action="proses_pembelian.php" method="POST">
