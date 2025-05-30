@@ -6,7 +6,7 @@ $sessionId = session_id();
 $cartItems = [];
 $totalPrice = 0;
 
-// Fungsi helper untuk format Rupiah
+// Fungsi format Rupiah
 function formatRupiah($number) {
     return 'Rp' . number_format($number, 0, ',', '.');
 }
@@ -31,8 +31,8 @@ if ($stmt) {
     }
     $stmt->close();
 } else {
-    error_log("Gagal menyiapkan query: " . $conn->error);
-    echo "Terjadi kesalahan saat memuat keranjang.";
+    error_log("Gagal menyiapkan query cart.php: " . $conn->error);
+    echo "Terjadi kesalahan saat memuat keranjang."; 
 }
 
 $conn->close();
@@ -72,7 +72,7 @@ $conn->close();
                                                data-id="<?php echo $item['keranjang_id']; ?>">
                                         <button class="quantity-button increase-qty" data-id="<?php echo $item['keranjang_id']; ?>">+</button>
                                     </div>
-                                </div>
+                                    </div>
                                 <button class="remove-button remove-item" data-id="<?php echo $item['keranjang_id']; ?>">×</button>
                             </div>
                         <?php endforeach; ?>
@@ -83,39 +83,36 @@ $conn->close();
                         </div>
                     <?php endif; ?>
                 </div>
+            </div> </div> <div class="cart-footer" id="cart-footer-id"> 
+            <div class="cart-total" id="cart-total-div" style="<?php echo empty($cartItems) ? 'display: none;' : 'display: flex;'; ?>">
+                <span>Total:</span>
+                <span class="total-price" id="cart-total-price"><?php echo formatRupiah($totalPrice); ?></span>
             </div>
-
-            <div class="cart-footer">
-                <div class="cart-total" id="cart-total-div" style="<?php echo empty($cartItems) ? 'display: none;' : 'display: flex;'; ?>">
-                    <span>Total:</span>
-                    <span class="total-price" id="cart-total-price"><?php echo formatRupiah($totalPrice); ?></span>
-                </div>
-                <a href="payment.php" class="checkout-button" id="checkout-button-id" style="<?php echo empty($cartItems) ? 'display: none;' : 'display: block;'; ?>">Checkout</a>
-                <a href="katalog.php" class="back-to-menu">Back to Menu</a>
-
-                <div class="nav-bar">
-                    <div class="nav-item">
-                        <a href="katalog.php">
-                            <div class="nav-icon">🏠</div>
-                            <div>Home</div>
-                        </a>
-                    </div>
-                    <div class="nav-item">
-                        <a href="search.php">
-                            <div class="nav-icon">🔍</div>
-                            <div>Search</div>
-                        </a>
-                    </div>
-                    <div class="nav-item active">
-                        <a href="cart.php">
-                            <div class="nav-icon">🛒</div>
-                            <div>Cart</div>
-                        </a>
-                    </div>
-                </div>
-            </div> 
+            <a href="payment.php" class="checkout-button" id="checkout-button-id" style="<?php echo empty($cartItems) ? 'display: none;' : 'display: block;'; ?>">Checkout</a>
+            <a href="katalog.php" class="back-to-menu">Back to Menu</a>
         </div>
-    </div>
-    <script src="asset/js/cart.js"></script> 
+
+        <div class="nav-bar">
+            <div class="nav-item">
+                <a href="katalog.php">
+                    <div class="nav-icon">🏠</div>
+                    <div>Home</div>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="search.php">
+                    <div class="nav-icon">🔍</div>
+                    <div>Search</div>
+                </a>
+            </div>
+            <div class="nav-item active">
+                <a href="cart.php">
+                    <div class="nav-icon">🛒</div>
+                    <div>Cart</div>
+                </a>
+            </div>
+        </div>
+
+    </div> <script src="asset/js/cart.js"></script> 
 </body>
 </html>
