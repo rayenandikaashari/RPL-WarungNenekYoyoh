@@ -153,48 +153,39 @@ if ($conn) $conn->close();
     </div>
 
     <script type="text/javascript">
-      var snapToken = "<?php echo $snapToken; ?>";
-      
-      function proceedToPayment() {
-        if (snapToken) {
-          window.snap.pay(snapToken, {
-            onSuccess: function(result){
-              console.log('success');
-              console.log(result);
-              // Arahkan ke halaman yang memberi tahu bahwa pesanan sedang diproses,
-              // dan akan dikonfirmasi setelah notifikasi server diterima.
-              // Untuk sementara, kita arahkan ke thankyou.php dengan status pending
-              window.location.href = 'thankyou.php?order_id=<?php echo "WNY-" . $pembelianIdDatabase; ?>&status_code=' + result.status_code + '&transaction_status=pending_webhook';
-            },
-            onPending: function(result){
-              console.log('pending');
-              console.log(result);
-              // Arahkan ke halaman yang sama atau halaman status pending
-              window.location.href = 'thankyou.php?order_id=<?php echo "WNY-" . $pembelianIdDatabase; ?>&status_code=' + result.status_code + '&transaction_status=' + result.transaction_status;
-            },
-            onError: function(result){
-              console.log('error');
-              console.log(result);
-              alert("Pembayaran gagal atau dibatalkan.");
-              window.location.href = 'payment.php'; // Kembali ke halaman pembayaran
-            },
-            onClose: function(){
-              console.log('customer closed the popup without finishing the payment');
-              alert('Anda menutup popup pembayaran.');
-              // Bisa arahkan kembali ke payment.php atau cart.php
-              // window.location.href = 'payment.php'; 
-            }
-          });
-        } else {
-          // Ini tidak akan terlihat jika PHP sudah menampilkan pesan error
-          // alert('Snap Token tidak valid atau tidak ditemukan!');
+  var snapToken = "<?php echo $snapToken; ?>";
+  
+  function proceedToPayment() {
+    if (snapToken) {
+      window.snap.pay(snapToken, {
+        onSuccess: function(result){
+          console.log('success');
+          console.log(result);
+          window.location.href = 'thankyou.php?order_id=<?php echo "WNY-" . $pembelianIdDatabase; ?>&status_code=' + result.status_code + '&transaction_status=pending_webhook';
+        },
+        onPending: function(result){
+          console.log('pending');
+          console.log(result);
+          window.location.href = 'thankyou.php?order_id=<?php echo "WNY-" . $pembelianIdDatabase; ?>&status_code=' + result.status_code + '&transaction_status=' + result.transaction_status;
+        },
+        onError: function(result){
+          console.log('error');
+          console.log(result);
+          alert("Pembayaran gagal atau dibatalkan.");
+          window.location.href = 'payment.php';
+        },
+        onClose: function(){
+          console.log('customer closed the popup without finishing the payment');
+          // ✅ Di sini kita arahkan ke index.php
+          window.location.href = 'index.php';
         }
-      }
+      });
+    }
+  }
 
-      // Panggil fungsi secara otomatis jika snapToken ada
-      if (snapToken) {
-        proceedToPayment();
-      }
-    </script>
+  if (snapToken) {
+    proceedToPayment();
+  }
+</script>
 </body>
 </html>
