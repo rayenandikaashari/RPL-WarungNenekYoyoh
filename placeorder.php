@@ -88,7 +88,7 @@ try {
 // $conn->close(); // Koneksi akan ditutup setelah getSnapToken atau di blok catch jika error
 
 // --- 3. Konfigurasi Midtrans ---
-\Midtrans\Config::$serverKey = 'SB-Mid-server-pp1mAa3cCZQws473y8CSVmgW'; // GANTI DENGAN SERVER KEY ASLI ANDA
+\Midtrans\Config::$serverKey = 'SB-Mid-server-HP72oJ5I8BFKXF7-GkSvpGpI'; // GANTI DENGAN SERVER KEY ASLI ANDA
 \Midtrans\Config::$isProduction = false; // Set true untuk produksi
 \Midtrans\Config::$isSanitized = true;
 \Midtrans\Config::$is3ds = true;
@@ -132,7 +132,7 @@ if ($conn) $conn->close();
     <title>Proses Pembayaran Midtrans</title>
     <script type="text/javascript"
             src="https://app.sandbox.midtrans.com/snap/snap.js" 
-            data-client-key="SB-Mid-client-h7R1b2X_xkXswsuX"></script> 
+            data-client-key="SB-Mid-client-NJ1mWHKDnXdKodIV"></script> 
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="asset/css/style.css"> <style>
         body { display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: #f5f5f5; }
