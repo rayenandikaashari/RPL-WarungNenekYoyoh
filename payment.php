@@ -46,18 +46,19 @@ $conn->close();
             <br>
             <h1 class="payment-title">Pilih Metode Pembayaran</h1>
             <br>
-
+        
             <div class="cart-total" style="padding: 0 15px; margin-bottom: 20px;">
                 <span>Total Bayar:</span>
                 <span class="total-price"><?php echo formatRupiah($totalPrice); ?></span>
             </div>
-            
-            <div class="payment-options" style="padding: 0 15px;">
-                <form action="placeorder.php" method="POST" style="margin-bottom: 15px;">
-                    <button type="submit" class="checkout-button">💳 Bayar Online (Midtrans)</button>
-                </form>
 
-                <hr>
+            <hr>
+            
+            <form action="placeorder.php" method="POST" style="margin-bottom: 15px;">
+                <input type="hidden" name="total_price" value="<?php echo $totalPrice; ?>">
+                <input type="hidden" name="payment_method" value="midtrans">
+                <button type="submit" class="cash-button">💳 Bayar Online (Midtrans)</button>
+            </form>
 
                 <form action="proses_pembelian.php" method="POST">
                     <input type="hidden" name="total_price" value="<?php echo $totalPrice; ?>">
